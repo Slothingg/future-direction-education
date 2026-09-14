@@ -1,15 +1,21 @@
 "use client";
 
-import { FormEvent, useMemo, useState } from "react";
+import { FormEvent, useEffect, useMemo, useState } from "react";
 import { courses, notices, type CourseId } from "@/lib/content";
 
 export function RegisterForm({ initialCourse = "geo" }: { initialCourse?: string }) {
-  const start = courses.some((c) => c.id === initialCourse)
-    ? (initialCourse as CourseId)
-    : "geo";
   const [sent, setSent] = useState(false);
   const [error, setError] = useState("");
-  const [courseId, setCourseId] = useState<string>(start);
+  const [courseId, setCourseId] = useState<string>(
+    courses.some((c) => c.id === initialCourse) ? initialCourse : "geo",
+  );
+
+  useEffect(() => {
+    const fromQuery = new URLSearchParams(window.location.search).get("course");
+    if (fromQuery && courses.some((c) => c.id === fromQuery)) {
+      setCourseId(fromQuery);
+    }
+  }, []);
 
   const selected = useMemo(
     () => courses.find((c) => c.id === courseId) ?? courses[0],
