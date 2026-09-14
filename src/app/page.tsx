@@ -149,21 +149,14 @@ export default function HomePage() {
               alt=""
               width={282}
               height={282}
-              className="float-b absolute -left-6 top-8 w-36 lg:-left-10 lg:w-48"
+              className="float-b absolute left-0 top-0 w-24 lg:-left-2 lg:top-2 lg:w-28"
             />
             <Image
               src="/assets/about1.png"
               alt="未來方針教學機器人"
               width={420}
               height={517}
-              className="relative z-10 mx-auto h-auto w-[78%] drop-shadow-[0_18px_40px_rgba(17,28,68,0.12)]"
-            />
-            <Image
-              src="/assets/ai-element.png"
-              alt=""
-              width={80}
-              height={80}
-              className="float-a absolute right-6 top-4 w-16"
+              className="relative z-10 mx-auto h-auto w-[72%] drop-shadow-[0_18px_40px_rgba(17,28,68,0.12)]"
             />
           </Reveal>
           <Reveal delay={120}>
