@@ -405,11 +405,7 @@ export default function HomePage() {
         <div className="relative mx-auto mt-12 grid max-w-7xl items-stretch gap-6 md:grid-cols-3">
           {courses.map((course, i) => (
             <Reveal key={course.id} delay={i * 90}>
-              <article
-                className={`tech-card h-full rounded-2xl p-7 text-center ${
-                  i === 0 ? "ring-2 ring-purple shadow-[0_0_30px_rgba(91,77,255,0.18)]" : ""
-                }`}
-              >
+              <article className="tech-card h-full rounded-2xl p-7 text-center">
                 <p className="text-sm font-semibold text-purple">{course.level}</p>
                 <h3 className="mt-2 text-lg font-semibold text-navy">
                   {course.title.replace("課程", "")}
