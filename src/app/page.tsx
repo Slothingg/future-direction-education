@@ -16,7 +16,7 @@ import {
 } from "@/lib/content";
 import { Reveal } from "@/components/Reveal";
 import { RobotFloat } from "@/components/RobotFloat";
-import { HudCorners, OrbitStage, TechField } from "@/components/TechField";
+import { HudCorners, TechField } from "@/components/TechField";
 
 export const metadata: Metadata = {
   title: "未來方針教育中心｜香港 AI 教育・GEO・AI Marketing 課程",
@@ -35,106 +35,98 @@ const serviceBg = ["bg-purple/10", "bg-mint/15", "bg-navy/5"];
 export default function HomePage() {
   return (
     <>
-      {/* Hero — centred composition with flanking illustrations, inspired by Home 3 */}
-      <section className="relative overflow-hidden bg-navy text-white">
-        <TechField />
-        <HudCorners />
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_20%,rgba(91,77,255,0.32),transparent_38%),radial-gradient(circle_at_82%_12%,rgba(65,226,149,0.22),transparent_30%)]" />
-        <OrbitStage size={420} />
+      {/* Hero — a two-column composition based on the reference home page */}
+      <section className="relative isolate min-h-[620px] overflow-hidden bg-[#071631] text-white lg:min-h-[680px]">
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_72%_42%,rgba(65,226,149,0.14),transparent_24%),radial-gradient(circle_at_16%_34%,rgba(91,77,255,0.18),transparent_34%)]" />
+        <div className="pointer-events-none absolute inset-0 opacity-60">
+          <span className="hero-star left-[11%] top-[34%]" />
+          <span className="hero-star left-[78%] top-[21%] !bg-mint" />
+          <span className="hero-star left-[82%] top-[42%] !bg-purple" />
+          <span className="hero-star left-[58%] top-[30%] !h-2 !w-2 !bg-mint" />
+        </div>
 
-        <div className="relative z-10 mx-auto max-w-3xl px-4 pb-28 pt-16 text-center sm:pt-20 lg:px-8 lg:pb-36 lg:pt-24">
-          <p className="hero-watermark pointer-events-none absolute inset-x-0 top-2 z-0 select-none text-center">
-            AI
-          </p>
-          <div className="hero-copy relative z-10">
-            <p className="hero-line relative mx-auto mb-5 inline-flex items-center gap-2 text-sm font-medium tracking-[0.18em] text-mint">
-              {site.slogan}
-            </p>
-            <h1 className="hero-line relative font-display text-[2.1rem] font-semibold leading-tight sm:text-4xl md:text-5xl lg:text-[56px] lg:leading-[1.12]">
-              學懂 <span className="mint-glow">AI</span>，不只是跟上科技，
-              <br className="hidden sm:block" />
-              而是跟上市場。
-            </h1>
-            <p className="hero-line relative mx-auto mt-6 max-w-xl text-base leading-8 text-white/80">
-              我們把複雜的 AI 技術轉化成人人都聽得明、做得到、帶得走的實戰能力。面向中小企、Marketing
-              從業員、Agency 及創業者。
-            </p>
-            <div className="hero-line relative mt-9 flex flex-wrap items-center justify-center gap-5">
-              <Link href="/register" className="btn-primary">
-                立即報名
-              </Link>
-              <Link href="/courses" className="btn-ghost">
-                <span className="play-orb">
-                  <Play size={14} fill="white" />
-                </span>
-                了解課程
-              </Link>
+        <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-8 px-4 pb-28 pt-16 sm:pt-20 lg:min-h-[680px] lg:grid-cols-[1.05fr_0.95fr] lg:gap-12 lg:px-8 lg:pb-32 lg:pt-12">
+          <div className="hero-copy relative max-w-[600px]">
+            <Image
+              src="/assets/t-element.png"
+              alt=""
+              width={309}
+              height={225}
+              priority
+              className="pointer-events-none absolute -left-20 -top-16 w-64 opacity-25 sm:-left-24 sm:w-72"
+            />
+            <div className="relative">
+              <p className="hero-line mb-5 text-sm font-medium tracking-[0.18em] text-mint">
+                {site.slogan}
+              </p>
+              <h1 className="hero-line max-w-[600px] font-display text-[2.8rem] font-semibold leading-[1.08] sm:text-5xl lg:text-[64px]">
+                學懂 <span className="mint-glow">AI</span>，
+                <br />
+                不只是跟上科技，
+                <br />
+                而是跟上市場。
+              </h1>
+              <p className="hero-line mt-6 max-w-xl text-base leading-8 text-white/75">
+                我們把複雜的 AI 技術轉化成人人都聽得明、做得到、帶得走的實戰能力。
+                面向中小企、Marketing 從業員、Agency 及創業者。
+              </p>
+              <div className="hero-line mt-8 flex flex-wrap items-center gap-5">
+                <Link href="/register" className="btn-primary">
+                  立即報名
+                </Link>
+                <Link href="/courses" className="btn-ghost">
+                  <span className="play-orb">
+                    <Play size={14} fill="white" />
+                  </span>
+                  了解課程
+                </Link>
+              </div>
             </div>
-            <div className="hero-line hero-status relative mx-auto mt-10 max-w-xl justify-center">
-              <span className="inline-flex items-center gap-2 text-mint">
-                <span className="status-dot" />
-                System Online
-              </span>
-              <span>GEO</span>
-              <span>AI Web</span>
-              <span>AI Marketing</span>
-              <span className="text-white/45">香港實體授課</span>
-            </div>
+          </div>
+
+          <div className="relative mx-auto h-[390px] w-full max-w-[480px] sm:h-[470px] lg:h-[540px] lg:max-w-none">
+            <div className="hero-glow !left-[52%] !top-[48%] !h-72 !w-72 opacity-60" />
+            <RobotFloat variant="b" className="absolute inset-x-0 bottom-6 z-10 mx-auto w-[260px] sm:w-[330px] lg:bottom-0 lg:w-[380px]">
+              <Image
+                src="/assets/banner1.png"
+                alt="AI 教學機器人"
+                width={421}
+                height={579}
+                priority
+                className="h-auto w-full object-contain drop-shadow-[0_22px_45px_rgba(0,0,0,0.28)]"
+              />
+            </RobotFloat>
+            <Image
+              src="/assets/rocket-element.png"
+              alt=""
+              width={219}
+              height={290}
+              className="float-c absolute bottom-[18%] right-[-2%] z-20 w-24 sm:right-[-4%] sm:w-32 lg:bottom-[20%] lg:right-[-1%] lg:w-40"
+            />
+            <Image
+              src="/assets/ai-element.png"
+              alt=""
+              width={118}
+              height={125}
+              className="float-a absolute left-[8%] top-[10%] z-20 w-14 sm:left-[10%] sm:w-20"
+            />
+            <Image
+              src="/assets/ball-element.png"
+              alt=""
+              width={95}
+              height={86}
+              className="float-b absolute bottom-[11%] left-[-2%] z-20 w-12 sm:left-[-3%] sm:w-16"
+            />
           </div>
         </div>
 
-        {/* Side robots — larger, with clear space from title and decor */}
-        <div className="pointer-events-none absolute inset-y-0 left-0 hidden w-[220px] xl:block 2xl:w-[260px]">
-          <RobotFloat
-            variant="b"
-            className="absolute left-3 top-[48%] -translate-y-1/2 2xl:left-6"
-          >
-            <Image
-              src="/assets/banner1.png"
-              alt=""
-              width={421}
-              height={579}
-              priority
-              className="w-28 object-contain opacity-85 drop-shadow-[0_20px_50px_rgba(91,77,255,0.35)] 2xl:w-36"
-            />
-          </RobotFloat>
-          <Image
-            src="/assets/rocket-element.png"
-            alt=""
-            width={219}
-            height={290}
-            className="float-c absolute left-2 top-[14%] w-10 opacity-65 2xl:left-3 2xl:w-12"
-          />
-        </div>
-        <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-[220px] xl:block 2xl:w-[260px]">
-          <RobotFloat
-            variant="a"
-            className="absolute right-3 top-[48%] -translate-y-1/2 2xl:right-6"
-          >
-            <Image
-              src="/assets/about1.png"
-              alt=""
-              width={420}
-              height={517}
-              priority
-              className="w-28 object-contain opacity-85 drop-shadow-[0_18px_40px_rgba(17,28,68,0.35)] 2xl:w-36"
-            />
-          </RobotFloat>
-          <Image
-            src="/assets/brain-element.png"
-            alt=""
-            width={282}
-            height={282}
-            className="float-b absolute right-2 top-[12%] w-9 opacity-65 2xl:right-3 2xl:w-11"
-          />
-        </div>
-
-        <svg className="hero-wave" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden>
-          <path
-            d="M0 70C180 120 360 10 540 50C720 90 900 20 1080 55C1260 90 1350 70 1440 40V120H0Z"
-            fill="#f4f6ff"
-          />
-        </svg>
+        <Image
+          src="/assets/shape-element1.png"
+          alt=""
+          width={1920}
+          height={213}
+          className="pointer-events-none absolute bottom-[-1px] left-0 z-20 h-[86px] w-full object-cover object-top sm:h-[105px] lg:h-[125px]"
+        />
       </section>
 
       {/* About */}
