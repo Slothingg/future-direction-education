@@ -24,18 +24,18 @@ export function Footer() {
     <footer className="relative overflow-hidden bg-navy text-white">
       <div className="tech-grid opacity-30" />
       <Image
-        src="/assets/footer-shape.png"
+        src="/assets/news-elements2.png"
         alt=""
-        width={420}
-        height={220}
-        className="pointer-events-none absolute -left-16 bottom-0 w-72 opacity-40 float-a"
+        width={368}
+        height={365}
+        className="pointer-events-none absolute left-6 top-8 h-auto w-14 object-contain opacity-55 float-b md:w-16"
       />
       <Image
-        src="/assets/box-element.png"
+        src="/assets/ashape-elements.png"
         alt=""
-        width={80}
-        height={80}
-        className="pointer-events-none absolute right-10 top-8 w-16 opacity-70 float-b"
+        width={330}
+        height={342}
+        className="pointer-events-none absolute -right-6 bottom-0 h-auto w-44 object-contain opacity-45 sm:w-52 md:w-56"
       />
       <div className="relative mx-auto grid max-w-7xl gap-10 px-4 py-16 lg:grid-cols-4 lg:px-8">
         <div className="lg:col-span-1">

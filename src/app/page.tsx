@@ -15,6 +15,7 @@ import {
   whyNow,
 } from "@/lib/content";
 import { Reveal } from "@/components/Reveal";
+import { RobotFloat } from "@/components/RobotFloat";
 import { HudCorners, OrbitStage, TechField } from "@/components/TechField";
 
 export const metadata: Metadata = {
@@ -41,7 +42,7 @@ export default function HomePage() {
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_20%,rgba(91,77,255,0.32),transparent_38%),radial-gradient(circle_at_82%_12%,rgba(65,226,149,0.22),transparent_30%)]" />
         <OrbitStage size={420} />
 
-        <div className="relative z-10 mx-auto max-w-4xl px-4 pb-28 pt-16 text-center sm:pt-20 lg:px-8 lg:pb-36 lg:pt-24">
+        <div className="relative z-10 mx-auto max-w-3xl px-4 pb-28 pt-16 text-center sm:pt-20 lg:px-8 lg:pb-36 lg:pt-24">
           <p className="hero-watermark pointer-events-none absolute inset-x-0 top-2 z-0 select-none text-center">
             AI
           </p>
@@ -82,52 +83,49 @@ export default function HomePage() {
           </div>
         </div>
 
-        <div className="pointer-events-none absolute inset-y-0 left-0 hidden w-[300px] xl:block">
-          <Image
-            src="/assets/banner1.png"
-            alt=""
-            width={421}
-            height={579}
-            priority
-            className="float-b absolute left-2 top-1/2 w-40 -translate-y-1/2 object-contain opacity-90 drop-shadow-[0_20px_50px_rgba(91,77,255,0.35)]"
-          />
+        {/* Side robots — larger, with clear space from title and decor */}
+        <div className="pointer-events-none absolute inset-y-0 left-0 hidden w-[220px] xl:block 2xl:w-[260px]">
+          <RobotFloat
+            variant="b"
+            className="absolute left-3 top-[48%] -translate-y-1/2 2xl:left-6"
+          >
+            <Image
+              src="/assets/banner1.png"
+              alt=""
+              width={421}
+              height={579}
+              priority
+              className="w-28 object-contain opacity-85 drop-shadow-[0_20px_50px_rgba(91,77,255,0.35)] 2xl:w-36"
+            />
+          </RobotFloat>
           <Image
             src="/assets/rocket-element.png"
             alt=""
             width={219}
             height={290}
-            className="float-c absolute left-16 top-[26%] w-16"
-          />
-          <Image
-            src="/assets/ball-element.png"
-            alt=""
-            width={95}
-            height={86}
-            className="float-a absolute bottom-[22%] left-6 w-10 opacity-80"
+            className="float-c absolute left-2 top-[14%] w-10 opacity-65 2xl:left-3 2xl:w-12"
           />
         </div>
-        <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-[300px] xl:block">
-          <Image
-            src="/assets/about1.png"
-            alt=""
-            width={420}
-            height={517}
-            priority
-            className="float-a absolute right-2 top-1/2 w-40 -translate-y-1/2 object-contain opacity-90 drop-shadow-[0_18px_40px_rgba(17,28,68,0.35)]"
-          />
+        <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-[220px] xl:block 2xl:w-[260px]">
+          <RobotFloat
+            variant="a"
+            className="absolute right-3 top-[48%] -translate-y-1/2 2xl:right-6"
+          >
+            <Image
+              src="/assets/about1.png"
+              alt=""
+              width={420}
+              height={517}
+              priority
+              className="w-28 object-contain opacity-85 drop-shadow-[0_18px_40px_rgba(17,28,68,0.35)] 2xl:w-36"
+            />
+          </RobotFloat>
           <Image
             src="/assets/brain-element.png"
             alt=""
             width={282}
             height={282}
-            className="float-b absolute right-14 top-[24%] w-14"
-          />
-          <Image
-            src="/assets/ai-element.png"
-            alt=""
-            width={118}
-            height={125}
-            className="float-d absolute bottom-[24%] right-6 w-12"
+            className="float-b absolute right-2 top-[12%] w-9 opacity-65 2xl:right-3 2xl:w-11"
           />
         </div>
 
@@ -151,13 +149,15 @@ export default function HomePage() {
               height={282}
               className="float-b absolute left-0 top-0 w-24 lg:-left-2 lg:top-2 lg:w-28"
             />
-            <Image
-              src="/assets/about1.png"
-              alt="未來方針教學機器人"
-              width={420}
-              height={517}
-              className="relative z-10 mx-auto h-auto w-[72%] drop-shadow-[0_18px_40px_rgba(17,28,68,0.12)]"
-            />
+            <RobotFloat variant="c" className="relative z-10 mx-auto w-[72%]">
+              <Image
+                src="/assets/about1.png"
+                alt="未來方針教學機器人"
+                width={420}
+                height={517}
+                className="h-auto w-full drop-shadow-[0_18px_40px_rgba(17,28,68,0.12)]"
+              />
+            </RobotFloat>
           </Reveal>
           <Reveal delay={120}>
             <p className="section-kicker">About Centre</p>
@@ -205,42 +205,60 @@ export default function HomePage() {
             AI」，而是你是否知道在甚麼情況用、如何判斷結果。
           </p>
         </Reveal>
-        <div className="relative mx-auto mt-14 grid max-w-6xl items-center gap-8 lg:grid-cols-3">
-          <div className="grid gap-6">
+        <div className="relative mx-auto mt-10 grid max-w-6xl items-start gap-5 lg:grid-cols-3 lg:gap-6">
+          <div className="grid gap-3">
             {whyNow.slice(0, 2).map((item, i) => (
               <Reveal key={item.title} delay={i * 90}>
-                <article className="tech-card rounded-2xl p-6 text-left">
-                  <Image src={item.icon} alt="" width={36} height={36} className="h-9 w-9" />
-                  <h3 className="mt-3 text-lg font-semibold text-navy">{item.title}</h3>
-                  <p className="mt-2 text-sm leading-7 text-muted">{item.body}</p>
+                <article className="tech-card flex gap-3 rounded-xl p-4 text-left">
+                  <Image
+                    src={item.icon}
+                    alt=""
+                    width={36}
+                    height={36}
+                    className="mt-0.5 h-7 w-7 shrink-0"
+                  />
+                  <div className="min-w-0">
+                    <h3 className="text-sm font-semibold text-navy">{item.title}</h3>
+                    <p className="mt-1 text-sm leading-6 text-muted">{item.body}</p>
+                  </div>
                 </article>
               </Reveal>
             ))}
           </div>
-          <Reveal delay={80} className="relative order-first mx-auto lg:order-none">
-            <div className="hero-glow !top-[55%] !h-52 !w-52 opacity-50" />
-            <Image
-              src="/assets/feature.png"
-              alt="AI 協作機器人"
-              width={400}
-              height={584}
-              className="relative z-10 h-auto w-64 lg:w-80"
-            />
+          <Reveal delay={80} className="relative order-first mx-auto lg:order-none lg:pt-2">
+            <div className="hero-glow !top-[55%] !h-44 !w-44 opacity-50" />
+            <RobotFloat variant="b" className="relative z-10 w-52 lg:w-64">
+              <Image
+                src="/assets/feature.png"
+                alt="AI 協作機器人"
+                width={400}
+                height={584}
+                className="h-auto w-full"
+              />
+            </RobotFloat>
             <Image
               src="/assets/feature-ali.png"
               alt=""
               width={72}
               height={72}
-              className="float-d absolute right-0 top-8 z-20 w-14"
+              className="float-d absolute right-0 top-6 z-20 w-12"
             />
           </Reveal>
-          <div className="grid gap-6">
+          <div className="grid gap-3">
             {whyNow.slice(2).map((item, i) => (
               <Reveal key={item.title} delay={i * 90 + 120}>
-                <article className="tech-card rounded-2xl p-6 text-left">
-                  <Image src={item.icon} alt="" width={36} height={36} className="h-9 w-9" />
-                  <h3 className="mt-3 text-lg font-semibold text-navy">{item.title}</h3>
-                  <p className="mt-2 text-sm leading-7 text-muted">{item.body}</p>
+                <article className="tech-card flex gap-3 rounded-xl p-4 text-left">
+                  <Image
+                    src={item.icon}
+                    alt=""
+                    width={36}
+                    height={36}
+                    className="mt-0.5 h-7 w-7 shrink-0"
+                  />
+                  <div className="min-w-0">
+                    <h3 className="text-sm font-semibold text-navy">{item.title}</h3>
+                    <p className="mt-1 text-sm leading-6 text-muted">{item.body}</p>
+                  </div>
                 </article>
               </Reveal>
             ))}
@@ -340,13 +358,15 @@ export default function HomePage() {
           </Reveal>
           <Reveal delay={120} className="relative">
             <div className="hero-glow !left-[45%] !opacity-40" />
-            <Image
-              src="/assets/qualified.png"
-              alt="課程實戰示意"
-              width={640}
-              height={480}
-              className="relative z-10 h-auto w-full"
-            />
+            <RobotFloat variant="d" className="relative z-10 w-full">
+              <Image
+                src="/assets/qualified.png"
+                alt="課程實戰示意"
+                width={640}
+                height={480}
+                className="h-auto w-full"
+              />
+            </RobotFloat>
           </Reveal>
         </div>
       </section>
@@ -402,7 +422,7 @@ export default function HomePage() {
             入門證書課與實戰課程，按程度選擇
           </h2>
         </Reveal>
-        <div className="relative mx-auto mt-12 grid max-w-7xl items-stretch gap-6 md:grid-cols-3">
+        <div className="relative z-10 mx-auto mt-12 grid max-w-7xl items-stretch gap-6 md:grid-cols-3">
           {courses.map((course, i) => (
             <Reveal key={course.id} delay={i * 90}>
               <article className="tech-card h-full rounded-2xl p-7 text-center">
@@ -434,13 +454,18 @@ export default function HomePage() {
             </Reveal>
           ))}
         </div>
-        <Image
-          src="/assets/planrobot.png"
-          alt=""
-          width={225}
-          height={349}
-          className="float-a pointer-events-none absolute bottom-8 right-4 hidden w-36 lg:block xl:right-10"
-        />
+        <RobotFloat
+          variant="a"
+          className="pointer-events-none absolute bottom-2 right-1 z-0 w-16 sm:bottom-3 sm:right-2 sm:w-20 lg:bottom-4 lg:right-4 lg:w-24 xl:right-6"
+        >
+          <Image
+            src="/assets/planrobot.png"
+            alt=""
+            width={225}
+            height={349}
+            className="h-auto w-full opacity-80"
+          />
+        </RobotFloat>
       </section>
 
       {/* Takeaways — honest "what you leave with" cards, replacing a generic testimonial slot */}
@@ -472,13 +497,15 @@ export default function HomePage() {
       <section id="partners" className="relative overflow-hidden bg-white px-4 py-20 lg:px-8 lg:py-28">
         <div className="mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-2">
           <Reveal className="relative">
-            <Image
-              src="/assets/efective.png"
-              alt=""
-              width={520}
-              height={480}
-              className="h-auto w-full max-w-md"
-            />
+            <RobotFloat variant="b" className="w-full max-w-md">
+              <Image
+                src="/assets/efective.png"
+                alt=""
+                width={520}
+                height={480}
+                className="h-auto w-full"
+              />
+            </RobotFloat>
             <Image
               src="/assets/efecttablet1.png"
               alt=""
@@ -530,7 +557,7 @@ export default function HomePage() {
           </h2>
           <div className="tech-card mt-10 divide-y divide-[#e6eaf3] overflow-hidden rounded-2xl">
             {faqs.slice(0, 6).map((item) => (
-              <details key={item.q} className="group px-6 py-5">
+              <details key={item.q} open className="group px-6 py-5">
                 <summary className="cursor-pointer list-none font-semibold text-navy transition-colors group-open:text-purple">
                   {item.q}
                 </summary>

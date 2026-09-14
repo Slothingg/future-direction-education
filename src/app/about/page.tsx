@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { CheckCircle2 } from "lucide-react";
 import { PageBanner } from "@/components/PageBanner";
+import { RobotFloat } from "@/components/RobotFloat";
 import { TechField } from "@/components/TechField";
 import { partners, principles, site } from "@/lib/content";
 
@@ -26,13 +27,15 @@ export default function AboutPage() {
               height={220}
               className="absolute -left-8 top-10 w-36 float-b"
             />
-            <Image
-              src="/assets/about1.png"
-              alt=""
-              width={420}
-              height={517}
-              className="relative z-10 mx-auto w-[78%]"
-            />
+            <RobotFloat variant="a" className="relative z-10 mx-auto w-[78%]">
+              <Image
+                src="/assets/about1.png"
+                alt=""
+                width={420}
+                height={517}
+                className="h-auto w-full"
+              />
+            </RobotFloat>
           </div>
           <div>
             <h2 className="font-display text-3xl font-semibold leading-snug text-navy">
