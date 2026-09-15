@@ -68,6 +68,74 @@ h3,
   animation: star-pulse 3.8s ease-in-out infinite;
 }
 
+.hero-ai-word {
+  pointer-events: none;
+  position: absolute;
+  left: clamp(0.5rem, 6vw, 5rem);
+  top: clamp(2.5rem, 8%, 5.5rem);
+  z-index: 0;
+  color: transparent;
+  font-family: var(--font-display);
+  font-size: clamp(10rem, 22vw, 20rem);
+  font-weight: 700;
+  letter-spacing: -0.12em;
+  line-height: 0.78;
+  opacity: 0.55;
+  -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.12);
+}
+
+.snap-row {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.snap-row::-webkit-scrollbar {
+  display: none;
+}
+
+.snap-card {
+  flex: 0 0 min(86%, 360px);
+  scroll-snap-align: start;
+}
+
+.soft-card {
+  background: white;
+  border: 1px solid #eef1f8;
+  box-shadow: 0 18px 50px rgba(17, 28, 68, 0.08);
+}
+
+.price-card {
+  background: white;
+  border: 1px solid #eceff7;
+  box-shadow: 0 16px 40px rgba(17, 28, 68, 0.08);
+}
+
+.price-card.is-featured {
+  background: #f6f4ff;
+  border-color: rgba(91, 77, 255, 0.18);
+}
+
+.nav-arrow {
+  display: grid;
+  height: 42px;
+  width: 42px;
+  place-items: center;
+  border: 1px solid #dce3f0;
+  border-radius: 10px;
+  background: white;
+  color: var(--navy);
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.nav-arrow:hover {
+  border-color: var(--purple);
+  color: var(--purple);
+}
+
 .dot {
   position: absolute;
   border-radius: 999px;
@@ -709,7 +777,7 @@ h3,
   pointer-events: none;
   position: fixed;
   inset: 0;
-  top: 4.25rem;
+  top: 4.75rem;
   z-index: 40;
   background: rgba(7, 14, 36, 0.55);
   opacity: 0;

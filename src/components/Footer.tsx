@@ -10,6 +10,7 @@ const links = [
   { href: "/about#partners", label: "企業培訓" },
   { href: "/register", label: "立即報名" },
   { href: "/contact", label: "聯絡我們" },
+  { href: "/about", label: "常見問題" },
 ];
 
 const courseLinks = [
@@ -21,26 +22,19 @@ const courseLinks = [
 
 export function Footer() {
   return (
-    <footer className="relative overflow-hidden bg-navy text-white">
-      <div className="tech-grid opacity-30" />
+    <footer className="relative overflow-hidden bg-[#071631] text-white">
       <Image
-        src="/assets/news-elements2.png"
+        src="/assets/footer-shape.png"
         alt=""
-        width={368}
-        height={365}
-        className="pointer-events-none absolute left-6 top-8 h-auto w-14 object-contain opacity-55 float-b md:w-16"
+        width={1920}
+        height={213}
+        className="pointer-events-none absolute left-0 top-0 z-10 h-[90px] w-full object-cover object-bottom sm:h-[120px] lg:h-[150px]"
       />
-      <Image
-        src="/assets/ashape-elements.png"
-        alt=""
-        width={330}
-        height={342}
-        className="pointer-events-none absolute -right-6 bottom-0 h-auto w-44 object-contain opacity-45 sm:w-52 md:w-56"
-      />
-      <div className="relative mx-auto grid max-w-7xl gap-10 px-4 py-16 lg:grid-cols-4 lg:px-8">
-        <div className="lg:col-span-1">
+      <div className="tech-grid opacity-25" />
+      <div className="relative z-20 mx-auto grid max-w-7xl gap-10 px-4 pb-12 pt-28 lg:grid-cols-4 lg:px-8 lg:pt-36">
+        <div>
           <Logo light />
-          <p className="mt-4 text-sm leading-7 text-white/75">
+          <p className="mt-4 max-w-xs text-sm leading-7 text-white/70">
             {site.slogan}
             <br />
             我們把複雜的 AI 技術轉化成簡單、實用、可即時應用的學習內容。
@@ -50,7 +44,7 @@ export function Footer() {
           <h4 className="mb-4 text-lg font-semibold">快速連結</h4>
           <ul className="space-y-2 text-sm text-white/75">
             {links.map((item) => (
-              <li key={item.href}>
+              <li key={`${item.href}-${item.label}`}>
                 <Link href={item.href} className="hover:text-white">
                   {item.label}
                 </Link>
@@ -73,22 +67,28 @@ export function Footer() {
         <div>
           <h4 className="mb-4 text-lg font-semibold">聯絡</h4>
           <ul className="space-y-3 text-sm text-white/75">
-            <li className="flex gap-2">
-              <Phone size={16} className="mt-0.5 shrink-0" />
+            <li className="flex gap-3">
+              <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-purple/80">
+                <Phone size={14} />
+              </span>
               {site.phone}
             </li>
-            <li className="flex gap-2">
-              <Mail size={16} className="mt-0.5 shrink-0" />
+            <li className="flex gap-3">
+              <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-purple/80">
+                <Mail size={14} />
+              </span>
               {site.email}
             </li>
-            <li className="flex gap-2">
-              <MapPin size={16} className="mt-0.5 shrink-0" />
+            <li className="flex gap-3">
+              <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-purple/80">
+                <MapPin size={14} />
+              </span>
               {site.address}
             </li>
           </ul>
         </div>
       </div>
-      <div className="relative border-t border-white/10">
+      <div className="relative z-20 border-t border-white/10">
         <div className="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-5 text-xs text-white/55 sm:flex-row sm:items-center sm:justify-between lg:px-8">
           <p>
             © 2026 {site.nameZh}　教育局編號 {site.license}

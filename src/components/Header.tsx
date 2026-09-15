@@ -3,9 +3,22 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Menu, X } from "lucide-react";
-import { nav, site } from "@/lib/content";
+import { Menu, Search, X } from "lucide-react";
 import { Logo } from "@/components/Logo";
+
+const topNav = [
+  { href: "/", label: "首頁" },
+  { href: "/courses", label: "課程" },
+  { href: "/about", label: "關於我們" },
+  { href: "/contact", label: "聯絡我們" },
+];
+
+const subNav = [
+  { href: "/courses", label: "課程一覽" },
+  { href: "/about#partners", label: "企業培訓" },
+  { href: "/register", label: "立即報名" },
+  { href: "/contact", label: "查詢" },
+];
 
 function isActive(pathname: string, href: string) {
   if (href.includes("#")) return false;
@@ -17,10 +30,6 @@ function isActive(pathname: string, href: string) {
 export function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
-
-  useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -38,50 +47,59 @@ export function Header() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-mint/15 bg-navy/88 text-white backdrop-blur-xl">
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-mint/70 to-transparent" />
-      <div className="relative mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3.5 lg:px-8">
-        <Logo light />
-        <nav className="hidden items-center gap-8 text-[15px] lg:flex">
-          {nav.map((item) => (
+    <header key={pathname} className="sticky top-0 z-50 bg-[#071631] text-white">
+      <div className="relative mx-auto max-w-7xl px-4 lg:px-8">
+        <div className="flex items-center justify-between gap-4 py-4 lg:py-5">
+          <Logo light />
+          <nav className="hidden items-center gap-7 text-[15px] lg:flex">
+            {topNav.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`transition-colors ${
+                  isActive(pathname, item.href)
+                    ? "font-semibold text-mint"
+                    : "text-white/80 hover:text-white"
+                }`}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </nav>
+          <div className="hidden items-center gap-3 lg:flex">
+            <Link
+              href="/courses"
+              className="grid h-10 w-10 place-items-center rounded-full text-white/80 transition hover:bg-white/10 hover:text-white"
+              aria-label="搜尋課程"
+            >
+              <Search size={18} />
+            </Link>
+            <Link href="/register" className="btn-primary !px-5 !py-2.5 text-sm">
+              立即報名
+            </Link>
+          </div>
+          <button
+            type="button"
+            className="grid h-11 w-11 place-items-center rounded-lg border border-white/15 transition hover:border-mint/40 lg:hidden"
+            onClick={() => setOpen((v) => !v)}
+            aria-expanded={open}
+            aria-controls="mobile-nav"
+            aria-label={open ? "關閉選單" : "開啟選單"}
+          >
+            {open ? <X size={22} /> : <Menu size={22} />}
+          </button>
+        </div>
+        <div className="hidden border-t border-white/10 py-3 lg:flex lg:items-center lg:justify-center lg:gap-10">
+          {subNav.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className={`group relative py-1 transition-colors ${
-                isActive(pathname, item.href)
-                  ? "font-semibold text-mint"
-                  : "text-white/85 hover:text-white"
-              }`}
+              className="text-sm text-white/75 transition hover:text-white"
             >
               {item.label}
-              <span
-                className={`absolute inset-x-0 -bottom-1 mx-auto h-px bg-mint shadow-[0_0_10px_#41e295] transition-all duration-300 ${
-                  isActive(pathname, item.href)
-                    ? "w-6 opacity-100"
-                    : "w-0 opacity-0 group-hover:w-6 group-hover:opacity-70"
-                }`}
-              />
             </Link>
           ))}
-        </nav>
-        <div className="hidden items-center gap-3 lg:flex">
-          <span className="rounded-full border border-white/10 px-3 py-1 text-[11px] tracking-wide text-white/55">
-            編號 {site.license}
-          </span>
-          <Link href="/register" className="btn-primary !py-2.5 !px-5 text-sm">
-            立即報名
-          </Link>
         </div>
-        <button
-          type="button"
-          className="grid h-11 w-11 place-items-center rounded-lg border border-white/15 transition hover:border-mint/40 lg:hidden"
-          onClick={() => setOpen((v) => !v)}
-          aria-expanded={open}
-          aria-controls="mobile-nav"
-          aria-label={open ? "關閉選單" : "開啟選單"}
-        >
-          {open ? <X size={22} /> : <Menu size={22} />}
-        </button>
       </div>
 
       <div
@@ -96,12 +114,12 @@ export function Header() {
         className={`mobile-nav-panel lg:hidden ${open ? "is-open" : ""}`}
       >
         <div className="mobile-nav-inner">
-          {nav.map((item, i) => (
+          {[...topNav, ...subNav.filter((item) => item.href !== "/register")].map((item, i) => (
             <Link
-              key={item.href}
+              key={`${item.href}-${item.label}`}
               href={item.href}
               className={`mobile-nav-item ${isActive(pathname, item.href) ? "text-mint" : "text-white/90"}`}
-              style={{ transitionDelay: open ? `${80 + i * 55}ms` : "0ms" }}
+              style={{ transitionDelay: open ? `${80 + i * 45}ms` : "0ms" }}
               onClick={() => setOpen(false)}
             >
               {item.label}
@@ -110,7 +128,7 @@ export function Header() {
           <Link
             href="/register"
             className="mobile-nav-item btn-primary mt-2 w-full"
-            style={{ transitionDelay: open ? `${80 + nav.length * 55}ms` : "0ms" }}
+            style={{ transitionDelay: open ? `${80 + 8 * 45}ms` : "0ms" }}
             onClick={() => setOpen(false)}
           >
             立即報名
